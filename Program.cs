@@ -1,51 +1,85 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-int myPin, inPin;
-double balance, value1, deposit, wDraw, value2, value3;
-Console.WriteLine("Please input pin");
-inPin=Convert.ToInt32(Console.ReadLine());
-myPin = 1202;
-balance = 10000;
-if (inPin == myPin)
+﻿namespace ATM
 {
-    Console.WriteLine("Your pin is correct");
-
-    Console.WriteLine("Please select an option:");
-    Console.WriteLine("(1)Balance check");
-    Console.WriteLine("(2)Deposit");
-    Console.WriteLine("(3)Withdrawal");
-    Console.WriteLine("(4)Change Pin");
-    string answer = Console.ReadLine();
-
-    if (answer == "1")
+    internal class Program
     {
-        Console.WriteLine("Your availabale balance is: " + balance);
-    }
-    if (answer == "2")
-    {
-        Console.WriteLine("Please enter how much you want to deposit: ");
-        value1 = Convert.ToDouble(Console.ReadLine());
-        deposit=balance + value1;
-        Console.WriteLine("Your current balance is now:" + deposit);
-    }
+        static void Main(string[] args)
+        {   //Variables
+            int pin, deposit, withdrawal, newPIN;
+            double balance, newBalance;
+            string transactions, transD, transW, transV, transC;
 
-    if (answer == "3")
-    {
-        Console.WriteLine("Please enter how much you want to withdraw: ");
-        value2 = Convert.ToInt32(Console.ReadLine());
-        wDraw = balance - value2;
-        Console.WriteLine("Your current balance is now:" + wDraw);
-    }
-    if (answer == "4")
-    {
-        Console.WriteLine("What will be your new pin?");
-        value3 =Convert.ToInt32(Console.ReadLine());
-        Console.WriteLine("Your new pin number is: " + value3);
-    }
+            //Values
+            balance = 5000;
+            transD = "Deposit";
+            transW = "Withdraw";
+            transV = "View Balance";
+            transC = "Change PIN";
+            
+            Console.WriteLine("Please enter PIN number");
+            pin = Convert.ToInt32(Console.ReadLine());
 
-}
-else
-{
-    Console.WriteLine("Your pin is incorrect! You have 2 attempts remaining. Try again.");
+            if (pin == 2005)
+            {
+                Console.WriteLine("Welcome User, please choose one of the following options");
+                Console.WriteLine("Deposit");
+                Console.WriteLine("----------------------------");
+                Console.WriteLine("Withdraw");
+                Console.WriteLine("----------------------------");
+                Console.WriteLine("View Balance");
+                Console.WriteLine("----------------------------");
+                Console.WriteLine("Change PIN");
+                Console.WriteLine("----------------------------");
+                transactions = Console.ReadLine();// Case Sensitive
+                Console.ReadKey();
+                 
+                 if (transactions == transD) 
+                 {
+                    Console.WriteLine("Deposit has been selected");
+                    Console.WriteLine("----------------------------");
+                    Console.WriteLine("Please enter the amount you would like deposit");
+                    deposit = Convert.ToInt32(Console.ReadLine());
+
+                    newBalance = balance + deposit;
+
+                    Console.WriteLine("Thank you for your service, your new balance is R" + newBalance);
+                    Console.ReadKey();
+                 }
+                 else if (transactions == transW) 
+                 {
+                    Console.WriteLine("Withdraw has been selected");
+                    Console.WriteLine("----------------------------");
+                    Console.WriteLine("Please enter the amount you would like to withdraw");
+                    withdrawal = Convert.ToInt32(Console.ReadLine());
+
+                    newBalance = balance - withdrawal;
+
+                    Console.WriteLine("Thank you for your service, your new balance is R" + newBalance);
+                    Console.ReadKey();
+                 }
+                 else if (transactions == transV) 
+                 {
+                    Console.WriteLine("View Balance has been selected");
+                    Console.WriteLine("----------------------------");
+                    Console.WriteLine("Current Balance : R" + balance);
+                    Console.ReadKey();
+
+                 }
+                 else if (transactions == transC) 
+                 {
+                    Console.WriteLine("Change PIN has been selected");
+                    Console.WriteLine("----------------------------");
+                    Console.WriteLine("Please enter new PIN");
+                    newPIN = Convert.ToInt32(Console.ReadLine());
+
+                    Console.WriteLine("Thank you for your service, your new PIN is " + newPIN);
+                    Console.ReadKey();
+                 }
+            }
+            else
+            {
+                Console.WriteLine("Incorrect PIN");
+            }
+        }
+    }
 }
 
